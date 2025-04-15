@@ -7,6 +7,111 @@ cp .env.example .env
 
 Configure your credentials to access GigaChat. Check https://github.com/ai-forever/gigachat to read about auth methods.
 
+## MCP server console expirements
+1. Run MCP server, for exmple:
+> python mcp_server.py
+
+2. Type first command to activate server (direct in console):
+> {"jsonrpc":"2.0","id":0,"result":{"protocolVersion":"2024-11-05","capabilities":{"experimental":{},"prompts":{"listChanged":false},"resources":{"subscribe":false,"listChanged":false},"tools":{"listChanged":false}},"serverInfo":{"name":"Math","version":"1.6.0"}}}
+
+Answer:
+> {"jsonrpc":"2.0","id":0,"result":{"protocolVersion":"2024-11-05","capabilities":{"experimental":{},"prompts":{"listChanged":false},"resources":{"subscribe":false,"listChanged":false},"tools":{"listChanged":false}},"serverInfo":{"name":"Math","version":"1.6.0"}}}
+
+3. Type command that connection was initialized:
+> {"method":"notifications/initialized","jsonrpc":"2.0"}
+
+Answer:
+> No answer
+
+4. Send request to list awailable tools:
+> {"method":"tools/list","jsonrpc":"2.0","id":1}
+
+Answer:
+```{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+        "tools": [
+            {
+                "name": "find_preson",
+                "description": "Find an info about some person by name",
+                "inputSchema": {
+                    "$defs": {
+                        "Query": {
+                            "properties": {
+                                "query": {
+                                    "title": "Query",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "query"
+                            ],
+                            "title": "Query",
+                            "type": "object"
+                        }
+                    },
+                    "properties": {
+                        "name": {
+                            "$ref": "#/$defs/Query"
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ],
+                    "title": "find_presonArguments",
+                    "type": "object"
+                }
+            },
+            {
+                "name": "add",
+                "description": "Add two numbers",
+                "inputSchema": {
+                    "properties": {
+                        "a": {
+                            "title": "A",
+                            "type": "number"
+                        },
+                        "b": {
+                            "title": "B",
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "a",
+                        "b"
+                    ],
+                    "title": "addArguments",
+                    "type": "object"
+                }
+            },
+            {
+                "name": "multiply",
+                "description": "Multiply two numbers",
+                "inputSchema": {
+                    "properties": {
+                        "a": {
+                            "title": "A",
+                            "type": "number"
+                        },
+                        "b": {
+                            "title": "B",
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "a",
+                        "b"
+                    ],
+                    "title": "multiplyArguments",
+                    "type": "object"
+                }
+            }
+        ]
+    }
+}
+```
+
 # Original readme:
 A simple CLI program to run LLM prompt and implement [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) client.
 
