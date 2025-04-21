@@ -789,8 +789,8 @@ wheels = [
 ]
 
 [[package]]
-name = "mcp-client-cli"
-version = "1.0.1"
+name = "mcp-client-cli-gigachat"
+version = "1.0.2"
 source = { editable = "." }
 dependencies = [
     { name = "aiosqlite" },

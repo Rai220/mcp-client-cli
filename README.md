@@ -7,6 +7,17 @@ cp .env.example .env
 
 Configure your credentials to access GigaChat. Check https://github.com/ai-forever/gigachat to read about auth methods.
 
+Also check, that GigaChat used in mcp-server-config.json:
+```
+  "llm": {
+    "provider": "gigachat",
+    "model": "GigaChat-2-Max",
+    "verify_ssl_certs": false,
+    "base_url": "https://gigachat.sberdevices.ru/v1",
+    "top_p": 0
+  }
+```
+
 ## MCP server console expirements
 1. Run MCP server, for exmple:
 > python mcp_server.py

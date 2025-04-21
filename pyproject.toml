@@ -3,13 +3,14 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "mcp_client_cli"
-version = "1.0.1"
+name = "mcp_client_cli_gigachat"
+version = "1.0.2"
 description = "Command line interface for MCP client"
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [
-    { name = "Adhika Setya Pramudita", email = "adhika.setya.p@gmail.com" }
+    { name = "Adhika Setya Pramudita", email = "adhika.setya.p@gmail.com" },
+    { name = "Konstantin Krestnikov", email = "k.krestnikov@gmail.com"}
 ]
 license = { text = "MIT" }
 dependencies = [
@@ -43,8 +44,11 @@ clipboard = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/adhikasp/mcp_client_cli"
-Issues = "https://github.com/adhikasp/mcp_client_cli/issues"
+Homepage = "https://github.com/Rai220/mcp-client-cli"
+Issues = "https://github.com/Rai220/mcp-client-cli/issues"
 
 [project.scripts]
-llm = "mcp_client_cli.cli:main"
+llm = "mcp_client_cli_gigachat.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_client_cli"]
