@@ -81,18 +81,29 @@ class McpToolkit(BaseToolkit):
     async def close(self):
         try:
             if self._session:
-                await self._session.__aexit__(None, None, None)
-        except:
-            # Currently above code doesn't really works and not closing the session
-            # But it's not a big deal as we are exiting anyway
-            # TODO find a way to cleanly close the session
-            pass
-        try:
-            if self._client:
-                await self._client.__aexit__(None, None, None)
-        except:
-            # TODO find a way to cleanly close the client
-            pass
+                try:
+                    # Add timeout to prevent hanging
+                    async with asyncio.timeout(2.0):
+                        # Create a new task to handle cleanup in the correct context
+                        await asyncio.create_task(self._session.__aexit__(None, None, None))
+                except asyncio.TimeoutError:
+                    pass
+                except Exception as e:
+                    pass
+        finally:
+            try:
+                if self._client:
+                    try:
+                        # Add timeout to prevent hanging
+                        async with asyncio.timeout(2.0):
+                            # Create a new task to handle cleanup in the correct context
+                            await asyncio.create_task(self._client.__aexit__(None, None, None))
+                    except asyncio.TimeoutError:
+                        pass
+                    except Exception as e:
+                        pass
+            except:
+                pass
 
     def get_tools(self) -> List[BaseTool]:
         return self._tools

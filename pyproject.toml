@@ -3,8 +3,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "mcp_client_cli_gigachat"
-version = "1.0.2"
+name = "mcp_client_cli"
+version = "1.0.4"
 description = "Command line interface for MCP client"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -16,9 +16,9 @@ license = { text = "MIT" }
 dependencies = [
     "langchain-anthropic>=0.3.0",
     "langchain>=0.3.8",
-    "mcp>=1.0.0",
+    "mcp>=1.6.0",
     "python-dotenv>=1.0.1",
-    "langgraph>=0.2.53",
+    "langgraph>=0.4.1",
     "langchain-openai>=0.2.10",
     "langchain-gigachat>=0.3.9",
     "langchain-google-genai>=2.0.7",
